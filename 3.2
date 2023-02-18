@@ -1,0 +1,75 @@
+<!DOCTYPE htl>
+<html>
+  <head>
+    <title>Color Picker</title>
+    <style>
+      .color-box {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+        display: inline-block;
+        margin: 5px;
+        cursor: pointer;
+      }
+      #blue {
+        background-color: blue;
+      }
+      #green {
+        background-color: green;
+      }
+      #red {
+        background-color: red;
+      }
+      #black {
+        background-color: black;
+      }
+      #grey {
+        background-color: grey;
+      }
+      #purple {
+        background-color: purple;
+      }
+      #color-history {
+        float: right;
+        margin-top: 100px;
+        margin-right: 100px;
+      }
+    </style>          <!--For some reason sometimes black box is not displayed properly alligned with others, no idea why though. -->
+  </head>
+  <body>
+    <h1>Color Picker</h1>
+    <div>
+      <p>Select a color:</p>
+      <div class="color-box" id="blue"></div>
+      <div class="color-box" id="green"></div>
+      <div class="color-box" id="red"></div>
+      <div class="color-box" id="black"></div>
+      <div class="color-box" id="grey"></div>
+      <div class="color-box" id="purple"></div>
+    </div>
+    <div>
+      <p>Selected color:</p>
+      <div id="hello-world"></div>
+    </div>
+    <div id="color-history">
+      <p>Color history:</p>
+      <ul id="history-list"></ul>
+    </div>
+    <script>
+      const colorBoxes = document.querySelectorAll(".color-box");
+      const helloWorld = document.getElementById("hello-world");
+      const historyList = document.getElementById("history-list");
+      let colorHistory = [];
+
+      colorBoxes.forEach(colorBox => {
+        colorBox.addEventListener("click", () => {
+          const color = colorBox.id;
+          helloWorld.innerText = "Hello world!";
+          helloWorld.style.color = color;
+          colorHistory.push(color);
+          historyList.innerHTML = colorHistory.map(color => `<li>${color}</li>`).join("");
+        });
+      });
+    </script>
+  </body>
+</html>
