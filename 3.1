@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homework3.1</title>
+  </head>
+  <body>
+    <h1>Prime Number calculator</h1>
+    <p>Please enter an integer:</p>
+    <input type="number" id="numberInput" />
+    <button onclick="findPrimes()">Find Primes</button>
+    <div id="result"></div>
+    <script>
+      function isPrime(num) {
+        if (num <= 1) {
+          return false;
+        }
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function findPrimes() {
+        const numberInput = document.getElementById("numberInput");
+        const result = document.getElementById("result");
+        const n = parseInt(numberInput.value);
+
+        if (isNaN(n)) {
+          result.innerText = "Please enter a valid integer number.";
+        } else {
+          let primes = [];
+          for (let i = 2; i <= n; i++) {
+            if (isPrime(i)) {
+              primes.push(i);
+            }
+          }
+          result.innerHTML = `<p>Prime numbers are:</p> <p>${primes.join(", ")}</p>`;
+        }
+      }
+    </script>
+  </body>
+</html>
